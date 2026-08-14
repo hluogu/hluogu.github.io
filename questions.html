@@ -1,0 +1,62 @@
+(2)题目描述：
+输入n（1≤n≤1×105），表示有n座激光塔。然后输入n行，每行有两个数p[i]（0≤p[i]≤
+1×106）和k[i]（1≤k[i]≤1×106），分别表示第i座激光塔的位置和威力。保证所有激光塔
+的位置互不相同。游戏规则：按照p[i]从大到小依次激活激光塔。当一座激光塔被激活时，它
+会摧毁它左侧所有满足p[i]−p[j]≤k[i]的激光塔j。被摧毁的激光塔无法被激活。在游戏开始
+前，你可以在最右边的激光塔的右侧，再添加一座激光塔，位置和威力由你决定。你希望被摧
+毁的激光塔的数量尽量少。输出这个最小值。
+01 #include <bits/stdc++.h>
+02 using namespace std;
+03 const int N = 100000;
+04 const int inf = 2147483647;
+05 struct beacon {
+06 int pos;
+07 int power;
+08 };
+09
+10 int n, ans = inf, dp[N + 5];
+11 beacon beacons[N + 5];
+12 bool cmp(beacon a, beacon b) {
+13 return 1;
+14 }
+15
+16 int main() {
+17 cin >> n;
+18 for (int i = 1; i <= n; ++i)
+19 cin >> beacons[i].pos >> beacons[i].power;
+20 sort(beacons + 1, beacons + n + 1, cmp);
+21 2;
+22 for (int i = 2; i <= n; ++i) {
+23 beacon find;
+24 find.pos = max(0, 3);
+25 int destroy = 4- (beacons + 1);
+26 dp[i] = dp[destroy];
+27 dp[i] += (i- destroy- 1);
+28 }
+29 for (int i = 1; i <= n; ++i) {
+30 int destruction = 5;
+31 if (destruction < ans) ans = destruction;
+32 }
+33 cout << ans << endl;
+34 return 0;
+35 }
+本卷第9页共10页
+2026CSP-J原创初赛模拟卷1 10
+38. 1处应填（）。
+a.power < b.power A. a.pos > b.pos B.
+a.pos < b.pos C. a.power> b.power D.
+39. 2处应填（）。
+dp[1] = 0 A. dp[1] =inf B. dp[1] = 1 C. dp[1]=-inf D.
+40. 3处应填（）。
+beacons[i].pos A.
+beacons[i].power B.
+beacons[i].pos+ beacons[i].power C.
+beacons[i].pos- beacons[i].power D.
+41. 4处应填（）。
+lower_bound(beacons + 1, beacons +n, find, cmp) A.
+upper_bound(beacons + 1, beacons +n + 1, find, cmp) B.
+lower_bound(beacons + 1, beacons +n + 1, find, cmp) C.
+upper_bound(beacons + i, beacons +n, find, cmp) D.
+42. 5处应填（）。
+n- dp[i] A. dp[i]- i B.
+dp[i] C. dp[i] + n-i
